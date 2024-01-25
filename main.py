@@ -21,7 +21,7 @@ while True:
     frame = cv2.flip(frame, 1)
 
     tag = apriltag.get_best_tag(frame)
-    print(tag)
+    print(tag.center)
     if(tag != 'no tag'):
         frame = apriltag.draw_tag(frame, tag)
     # Visualise the results
