@@ -16,6 +16,7 @@ while True:
     if not ret:
         print('no frame')
         continue
+
     frame = cv2.flip(frame, 0)
     frame = cv2.flip(frame, 1)
 
