@@ -1,16 +1,28 @@
 import pyfirmata
 import time
+import apriltag
+import cv2
 
-board = pyfirmata.Arduino('COM6')
-it = pyfirmata.util.Iterator(board)
-it.start()
 
-board.digital[10].mode = pyfirmata.INPUT
+# board = pyfirmata.Arduino('COM6')
+# it = pyfirmata.util.Iterator(board)
+# it.start()
 
+
+
+cap = cv2.VideoCapture(1)
 while True:
-    sw = board.digital[10].read()
-    if sw is True:
-        board.digital[13].write(1)
-    else:
-        board.digital[13].write(0)
-    time.sleep(0.1)
+    ret, frame = cap.read()
+    if not ret:
+        print('no frame')
+        continue
+    frame = cv2.flip(frame, 0)
+    frame = cv2.flip(frame, 1)
+
+    tag = apriltag.get_best_tag(frame)
+    print(tag)
+    if(tag != 'no tag'):
+        frame = apriltag.draw_tag(frame, tag)
+    # Visualise the results
+    cv2.imshow('stream', frame)
+    if cv2.waitKey(1) == ord('q'):break
