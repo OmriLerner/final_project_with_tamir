@@ -1,4 +1,4 @@
-import pyfirmata
+import arduino
 import time
 import apriltag
 import cv2
@@ -8,7 +8,7 @@ import cv2
 # it = pyfirmata.util.Iterator(board)
 # it.start()
 
-
+arduino.servo('COM6', 9, 0)
 
 cap = cv2.VideoCapture(1)
 while True:
