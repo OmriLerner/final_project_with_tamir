@@ -1,7 +1,7 @@
 from pupil_apriltags import Detector
 import cv2
-detector = Detector(families="tag16h5")
-tag_id = 0
+detector = Detector(families="tag36h11")
+tag_id = 1
 
 
 
